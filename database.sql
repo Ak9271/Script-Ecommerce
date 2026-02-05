@@ -29,3 +29,13 @@ CREATE TABLE `stock` (
     FOREIGN KEY (`id_produit`) REFERENCES `produits`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS `factures`;
+CREATE TABLE `factures` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `id_user` INT NOT NULL,
+    `date_commande` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `montant_total` DECIMAL(10,2) NOT NULL,
+    `statut` ENUM('en attente', 'payee', 'envoyee', 'annulee') DEFAULT 'en attente',
+    FOREIGN KEY (`id_user`) REFERENCES `users`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;`
+
