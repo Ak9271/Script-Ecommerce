@@ -51,3 +51,9 @@ CREATE TABLE `commandes` (
     FOREIGN KEY (`id_facture`) REFERENCES `factures`(`id`),
     FOREIGN KEY (`id_produit`) REFERENCES `produits`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+INSERT INTO `users` (`username`, `email`, `password`, `role`) VALUES
+('Admin', 'admin@admin.admin', 'admin123', 'admin')
+
+SET FOREIGN_KEY_CHECKS = 1;
