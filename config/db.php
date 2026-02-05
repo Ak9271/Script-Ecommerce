@@ -10,6 +10,6 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    die("Database Connection Failed: " . $e->getMessage() . "<br>Please check config/db.php and ensure database '$dbname' exists.");
+    die("Database Connection Failed: " . $e->getMessage() . "<br>Please check config/db.php and ensure database '$nom_db' exists.");
 }
 ?>
