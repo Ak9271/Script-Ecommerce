@@ -20,3 +20,12 @@ CREATE TABLE `produits` (
     `categorie` VARCHAR(50) DEFAULT 'General',
     `cree_le` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS `stock`;
+CREATE TABLE `stock` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `id_produit` INT NOT NULL,
+    `quantite` INT DEFAULT 0,
+    FOREIGN KEY (`id_produit`) REFERENCES `produits`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
