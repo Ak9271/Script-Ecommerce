@@ -9,3 +9,14 @@ CREATE TABLE `users` (
     `role` ENUM('user', 'admin') DEFAULT 'user',
     `cree_le` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS `produits`;
+CREATE TABLE `produits` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `nom` VARCHAR(100) NOT NULL,
+    `description` TEXT,
+    `prix` DECIMAL(10,2) NOT NULL,
+    `image` VARCHAR(255),
+    `categorie` VARCHAR(50) DEFAULT 'General',
+    `cree_le` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
