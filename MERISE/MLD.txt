@@ -1,0 +1,11 @@
+MLD
+
+USERS (id_use#r, username, email, passwword, role, cree_le)
+
+PRODUITS (id_produit, nom, description, prix, image, categorie, cree_le)
+
+STOCK (id, #id_produit, quantite)
+
+FACTURES (id_facture, #id_user, date_commande, montant_total, statut)
+
+COMMANDES (id_commande, #id_user, #id_facture, #id_produit, quantite, prix_unitaire)
