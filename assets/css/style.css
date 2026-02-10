@@ -1,0 +1,32 @@
+/* Custom Styles for ScriptShop */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+main {
+    flex: 1;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #4a90e2 !important;
+}
+
+.card-product {
+    transition: transform 0.2s;
+}
+
+.card-product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+    margin-top: auto;
+}

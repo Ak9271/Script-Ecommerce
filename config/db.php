@@ -5,6 +5,7 @@ $nom_db = 'script_ecommerce';
 $username = 'root'; //par defaut dans xampp
 $password = '';
 
+//établit connexion sécurisée avec database.sql
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$nom_db;charset=utf8mb4", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
