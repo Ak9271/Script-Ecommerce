@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS `script_ecommerce`;
+USE `script_ecommerce`;
+
 SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS `users`;
