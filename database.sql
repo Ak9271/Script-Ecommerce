@@ -58,6 +58,6 @@ CREATE TABLE `commandes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `users` (`username`, `email`, `password`, `role`) 
-VALUES ('Admin', 'admin@admin.admin', 'admin123', 'admin');
+VALUES ('Admin', 'admin@admin.admin', '$2y$10$6gLDDuZmP/thgPGp/oCFsu2UzxD2anl7iqL3N1QvHUIVc0X6sH8Oq', 'admin');
 
 SET FOREIGN_KEY_CHECKS = 1;
