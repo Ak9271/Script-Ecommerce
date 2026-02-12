@@ -21,6 +21,8 @@ CREATE TABLE `produits` (
     `prix` DECIMAL(10,2) NOT NULL,
     `image` VARCHAR(255),
     `categorie` VARCHAR(50) DEFAULT 'General',
+    `langage` VARCHAR(50) DEFAULT 'PHP',
+    `version` VARCHAR(20) DEFAULT '1.0',
     `cree_le` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

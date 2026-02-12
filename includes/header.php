@@ -9,7 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScriptShop - Vente de Scripts PHP</title>
+    <title>ScriptShop - Marketplace de Scripts</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Fixed path to be relative -->
     <link rel="stylesheet" href="../assets/css/style.css">
@@ -27,7 +27,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
             <div class="search-bar">
                 <i class="fas fa-search"></i>
-                <input type="text" placeholder="Search products...">
+                <input type="text" placeholder="Rechercher un script...">
             </div>
 
             <div class="header-icons">
@@ -56,14 +56,12 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
 
         <nav class="main-nav">
-            <!-- Relative links -->
-            <a href="../public/produits.php">Products</a>
-            <a href="../public/produits.php">SALE</a>
-            <a href="#">Inspiration</a>
-            <a href="#">Brands</a>
-            <a href="#">Outlet</a>
-            <a href="#">Shipping</a>
-            <a href="#">Returns & Warranty</a>
+            <a href="../public/produits.php">Tous les Scripts</a>
+            <a href="../public/produits.php?lang=python">Python</a>
+            <a href="../public/produits.php?lang=javascript">JavaScript</a>
+            <a href="../public/produits.php?lang=php">PHP</a>
+            <a href="../public/produits.php?lang=bash">Bash</a>
+            <a href="../public/produits.php?lang=csharp">C#</a>
             <a href="../public/a_propos.php">Contact</a>
         </nav>
     </header>
