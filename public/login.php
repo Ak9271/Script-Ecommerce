@@ -19,7 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $result = loginUser($pdo, $email, $password);
         if ($result === true) {
-            header('Location: index.php');
+            if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+                header('Location: ../admin/dashboard.php');
+            } else {
+                header('Location: index.php');
+            }
             exit;
         }
         $error = $result;
