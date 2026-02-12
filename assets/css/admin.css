@@ -2,14 +2,12 @@
     display: flex;
     min-height: 100vh;
     background: #050505;
-    /* True Black */
     color: #e5e5e5;
 }
 
 .admin-sidebar {
     width: 240px;
     background: #121212;
-    /* Dark Gray */
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -150,16 +148,13 @@
     font-size: 0.85rem;
 }
 
-/* Form Styles - Centered & Clean */
 .admin-form {
     background: #121212;
     border: 1px solid #2d2d2d;
     border-radius: 16px;
     padding: 40px;
     max-width: 700px;
-    /* Centered width */
     margin: 0 auto;
-    /* Center horizontally */
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
 }
 
@@ -217,10 +212,8 @@
     gap: 16px;
     margin-top: 32px;
     justify-content: flex-end;
-    /* Align buttons to right */
 }
 
-/* Table Styles */
 .admin-table-wrapper {
     background: #121212;
     border: 1px solid #2d2d2d;
@@ -336,7 +329,6 @@
     color: #fff;
 }
 
-/* Responsive */
 @media (max-width: 1024px) {
     .admin-main {
         padding: 24px;
