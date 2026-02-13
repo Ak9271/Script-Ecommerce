@@ -50,7 +50,8 @@ if (session_status() === PHP_SESSION_NONE) {
                 <?php endif; ?>
                 <a href="../public/panier.php" class="cart-badge">
                     <i class="fas fa-shopping-bag"></i>
-                    <span>0</span>
+                    <span><?= array_sum($_SESSION['panier'] ?? []) ?></span>
+
                 </a>
             </div>
         </div>

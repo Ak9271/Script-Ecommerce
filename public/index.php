@@ -9,8 +9,7 @@ include '../includes/header.php';
 
 <section class="hero-section">
     <h1>Des scripts prêts à l'emploi, dans tous les langages</h1>
-    <p>Découvrez notre collection de scripts Python, JavaScript, PHP, Bash, C# et bien plus. Téléchargez et intégrez-les
-        directement dans vos projets.</p>
+
     <div class="hero-buttons">
         <a href="produits.php" class="btn-shop btn-shop-primary">EXPLORER LES SCRIPTS</a>
         <a href="produits.php" class="btn-shop btn-shop-outline">VOIR TOUT</a>

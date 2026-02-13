@@ -32,7 +32,13 @@ include '../includes/header.php';
                 <h5><?= htmlspecialchars($produit['nom']) ?></h5>
                 <p class="product-desc"><?= htmlspecialchars($produit['categorie'] ?? 'General') ?> ·
                     v<?= htmlspecialchars($produit['version'] ?? '1.0') ?></p>
-                <p class="product-price"><?= formatPrice($produit['prix']) ?></p>
+                <p class="product-price">
+                    <?= formatPrice($produit['prix']) ?>
+                    <a href="ajouter_panier.php?id=<?= $produit['id_produit'] ?>" class="btn-shop btn-shop-primary btn-sm"
+                        title="Ajouter au panier" onclick="event.stopPropagation();">
+                        <i class="fas fa-cart-plus"></i>
+                    </a>
+                </p>
             </a>
         <?php endforeach; ?>
     </div>

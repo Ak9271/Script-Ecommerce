@@ -28,11 +28,12 @@ include '../includes/header.php';
         <span class="lang-badge lang-badge-lg"><?= htmlspecialchars($produit['langage'] ?? 'PHP') ?></span>
         <h1><?= htmlspecialchars($produit['nom']) ?></h1>
         <p class="detail-meta"><?= htmlspecialchars($produit['categorie'] ?? 'General') ?> · Version
-            <?= htmlspecialchars($produit['version'] ?? '1.0') ?></p>
+            <?= htmlspecialchars($produit['version'] ?? '1.0') ?>
+        </p>
         <h3 class="detail-price"><?= formatPrice($produit['prix']) ?></h3>
         <p class="detail-description"><?= nl2br(htmlspecialchars($produit['description'])) ?></p>
-        <a href="#" class="btn-shop btn-shop-primary btn-lg">
-            <i class="fas fa-download"></i> Acheter ce script
+        <a href="ajouter_panier.php?id=<?= $produit['id_produit'] ?>" class="btn-shop btn-shop-primary btn-lg">
+            <i class="fas fa-cart-plus"></i> Ajouter au panier
         </a>
     </div>
 </div>
