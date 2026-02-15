@@ -11,13 +11,13 @@ $total = 0;
 if (!empty($panier)) {
     $ids = array_keys($panier);
     if (!empty($ids)) {
-        // Fetch products in cart
+        
         $placeholders = implode(',', array_fill(0, count($ids), '?'));
         $stmt = $pdo->prepare("SELECT * FROM produits WHERE id_produit IN ($placeholders)");
         $stmt->execute($ids);
         $produitsDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Map products and calculate total
+        
         foreach ($produitsDb as $produit) {
             $id = $produit['id_produit'];
             $qty = $panier[$id];
@@ -34,6 +34,18 @@ include '../includes/header.php';
 
 <div class="cart-container">
     <h1 class="page-title">Mon Panier</h1>
+
+    <?php if (isset($_GET['success']) && $_GET['success'] === 'commande_validee'): ?>
+        <div class="checkout-success" style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: center;">
+            <i class="fas fa-check-circle"></i> Félicitations ! Votre commande a été validée avec succès.
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['error'])): ?>
+        <div class="checkout-error" style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: center;">
+            <i class="fas fa-exclamation-triangle"></i> Erreur lors de la commande : <?= htmlspecialchars($_GET['error']) ?>
+        </div>
+    <?php endif; ?>
 
     <?php if (empty($produitsPanier)): ?>
         <div class="empty-state">
@@ -89,7 +101,15 @@ include '../includes/header.php';
                         <?= formatPrice($total) ?>
                     </span>
                 </div>
-                <button class="btn-shop btn-shop-primary btn-block">Passer la commande</button>
+                
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <form action="valider_commande.php" method="POST">
+                        <button type="submit" class="btn-shop btn-shop-primary btn-block">Passer la commande</button>
+                    </form>
+                <?php else: ?>
+                    <a href="login.php?redirect=panier.php" class="btn-shop btn-shop-primary btn-block">Se connecter pour commander</a>
+                <?php endif; ?>
+
                 <a href="vider_panier.php" class="btn-shop btn-shop-outline btn-block" style="margin-top: 10px; color: crimson; border-color: crimson; text-align: center;">
                     <i class="fas fa-trash-alt"></i> Vider le panier
                 </a>

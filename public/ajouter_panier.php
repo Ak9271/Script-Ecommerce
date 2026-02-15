@@ -31,10 +31,8 @@ if ($current_qty < $stock_disponible) {
         $_SESSION['panier'][$id_produit] = 1;
     }
 } else {
-    // Optional: Add a flash message here if desired
 }
 
-// Redirect back to the previous page if possible, otherwise products
 $redirect = $_SERVER['HTTP_REFERER'] ?? 'produits.php';
 if (strpos($redirect, 'ajouter_panier.php') !== false) {
     $redirect = 'produits.php';

@@ -2,7 +2,7 @@
 require_once 'config/db.php';
 
 try {
-    // Check if column exists first
+    
     $stmt = $pdo->query("SHOW COLUMNS FROM produits LIKE 'fichier_script'");
     $exists = $stmt->fetch();
 
@@ -14,7 +14,7 @@ try {
         echo "<h1>Information</h1><p>La colonne 'fichier_script' existe déjà.</p>";
     }
     
-    // Create uploads/scripts directory if not exists
+    
     $uploadDir = __DIR__ . '/uploads/scripts';
     if (!file_exists($uploadDir)) {
         if (mkdir($uploadDir, 0755, true)) {

@@ -34,10 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $scriptName = '';
         if (isset($_FILES['script_file']) && $_FILES['script_file']['error'] === UPLOAD_ERR_OK) {
             $ext = strtolower(pathinfo($_FILES['script_file']['name'], PATHINFO_EXTENSION));
-            // You might want to restrict extensions here for security
-            // For now, allowing zip, rar, tar, gz, sql, php, py, js, sh, etc.
-            // Or just sanitize the filename and store raw content.
-            // Generally safer to store outside webroot, but here just inside uploads/scripts.
+            
+            
+            
+            
             $scriptName = uniqid('script_file_') . '_' . preg_replace('/[^a-z0-9.]/i', '_', $_FILES['script_file']['name']);
             if (!is_dir('../uploads/scripts')) {
                 mkdir('../uploads/scripts', 0755, true);
