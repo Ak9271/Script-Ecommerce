@@ -26,17 +26,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
             $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
             if (in_array($ext, $allowed)) {
-                $imageName = uniqid('script_') . '.' . $ext;
+                $imageName = uniqid('img_') . '.' . $ext;
                 move_uploaded_file($_FILES['image']['tmp_name'], '../uploads/' . $imageName);
             }
         }
 
-        $stmt = $pdo->prepare("INSERT INTO produits (nom, description, prix, image, categorie, langage, version) VALUES (:nom, :description, :prix, :image, :categorie, :langage, :version)");
+        $scriptName = '';
+        if (isset($_FILES['script_file']) && $_FILES['script_file']['error'] === UPLOAD_ERR_OK) {
+            $ext = strtolower(pathinfo($_FILES['script_file']['name'], PATHINFO_EXTENSION));
+            // You might want to restrict extensions here for security
+            // For now, allowing zip, rar, tar, gz, sql, php, py, js, sh, etc.
+            // Or just sanitize the filename and store raw content.
+            // Generally safer to store outside webroot, but here just inside uploads/scripts.
+            $scriptName = uniqid('script_file_') . '_' . preg_replace('/[^a-z0-9.]/i', '_', $_FILES['script_file']['name']);
+            if (!is_dir('../uploads/scripts')) {
+                mkdir('../uploads/scripts', 0755, true);
+            }
+            move_uploaded_file($_FILES['script_file']['tmp_name'], '../uploads/scripts/' . $scriptName);
+        }
+
+        $stmt = $pdo->prepare("INSERT INTO produits (nom, description, prix, image, fichier_script, categorie, langage, version) VALUES (:nom, :description, :prix, :image, :fichier_script, :categorie, :langage, :version)");
         $stmt->execute([
             ':nom' => $nom,
             ':description' => $description,
             ':prix' => $prix,
             ':image' => $imageName,
+            ':fichier_script' => $scriptName,
             ':categorie' => $categorie,
             ':langage' => $langage,
             ':version' => $version
@@ -153,6 +168,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="form-group">
                     <label for="image">Image</label>
                     <input type="file" id="image" name="image" accept="image/*">
+                </div>
+
+                <div class="form-group">
+                    <label for="script_file">Fichier du Script (ZIP, Rar, Code...)</label>
+                    <input type="file" id="script_file" name="script_file">
                 </div>
 
                 <div class="form-actions">
