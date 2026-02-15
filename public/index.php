@@ -2,7 +2,14 @@
 require_once '../config/db.php';
 require_once '../includes/fonctions.php';
 
-$latestProduits = getLatestProduits($pdo, 5);
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
+$onlyAvailable = false;
+
+$latestProduits = getLatestProduits($pdo, 5, $onlyAvailable);
 
 include '../includes/header.php';
 ?>

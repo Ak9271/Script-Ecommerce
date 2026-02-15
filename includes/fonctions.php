@@ -1,14 +1,26 @@
 <?php
 
-function getAllProduits($pdo)
+function getAllProduits($pdo, $onlyAvailable = false)
 {
-    $stmt = $pdo->query("SELECT p.*, s.quantite FROM produits p LEFT JOIN stock s ON p.id_produit = s.id_produit ORDER BY p.cree_le DESC");
+    $sql = "SELECT p.*, s.quantite FROM produits p LEFT JOIN stock s ON p.id_produit = s.id_produit";
+    if ($onlyAvailable) {
+        $sql .= " WHERE s.quantite > 0";
+    }
+    $sql .= " ORDER BY p.cree_le DESC";
+
+    $stmt = $pdo->query($sql);
     return $stmt->fetchAll();
 }
 
-function getLatestProduits($pdo, $limit = 5)
+function getLatestProduits($pdo, $limit = 5, $onlyAvailable = false)
 {
-    $stmt = $pdo->prepare("SELECT p.*, s.quantite FROM produits p LEFT JOIN stock s ON p.id_produit = s.id_produit ORDER BY p.cree_le DESC LIMIT :limit");
+    $sql = "SELECT p.*, s.quantite FROM produits p LEFT JOIN stock s ON p.id_produit = s.id_produit";
+    if ($onlyAvailable) {
+        $sql .= " WHERE s.quantite > 0";
+    }
+    $sql .= " ORDER BY p.cree_le DESC LIMIT :limit";
+
+    $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
     $stmt->execute();
     return $stmt->fetchAll();
@@ -21,9 +33,15 @@ function getProduitById($pdo, $id)
     return $stmt->fetch();
 }
 
-function getProduitsByLangage($pdo, $langage)
+function getProduitsByLangage($pdo, $langage, $onlyAvailable = false)
 {
-    $stmt = $pdo->prepare("SELECT p.*, s.quantite FROM produits p LEFT JOIN stock s ON p.id_produit = s.id_produit WHERE LOWER(p.langage) = LOWER(:langage) ORDER BY p.cree_le DESC");
+    $sql = "SELECT p.*, s.quantite FROM produits p LEFT JOIN stock s ON p.id_produit = s.id_produit WHERE LOWER(p.langage) = LOWER(:langage)";
+    if ($onlyAvailable) {
+        $sql .= " AND s.quantite > 0";
+    }
+    $sql .= " ORDER BY p.cree_le DESC";
+
+    $stmt = $pdo->prepare($sql);
     $stmt->execute([':langage' => $langage]);
     return $stmt->fetchAll();
 }

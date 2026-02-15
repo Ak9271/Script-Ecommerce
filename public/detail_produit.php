@@ -32,9 +32,16 @@ include '../includes/header.php';
         </p>
         <h3 class="detail-price"><?= formatPrice($produit['prix']) ?></h3>
         <p class="detail-description"><?= nl2br(htmlspecialchars($produit['description'])) ?></p>
-        <a href="ajouter_panier.php?id=<?= $produit['id_produit'] ?>" class="btn-shop btn-shop-primary btn-lg">
-            <i class="fas fa-cart-plus"></i> Ajouter au panier
-        </a>
+        
+        <?php if (($produit['quantite'] ?? 0) > 0): ?>
+            <a href="ajouter_panier.php?id=<?= $produit['id_produit'] ?>" class="btn-shop btn-shop-primary btn-lg">
+                <i class="fas fa-cart-plus"></i> Ajouter au panier
+            </a>
+        <?php else: ?>
+            <button class="btn-shop btn-shop-disabled btn-lg" disabled style="background-color: #ccc; cursor: not-allowed;">
+                <i class="fas fa-ban"></i> Hors stock
+            </button>
+        <?php endif; ?>
     </div>
 </div>
 

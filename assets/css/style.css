@@ -314,6 +314,7 @@ ul {
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: center;
 }
 
 .product-card:hover {
@@ -325,6 +326,7 @@ ul {
 .product-img {
     background-color: #000;
     height: 180px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -347,6 +349,7 @@ ul {
     font-size: 1rem;
     font-weight: 700;
     color: #fff;
+    width: 100%;
 }
 
 .product-desc {
@@ -354,6 +357,7 @@ ul {
     color: #999;
     font-size: 0.85rem;
     margin-bottom: 12px;
+    width: 100%;
 }
 
 .product-price {
@@ -362,6 +366,22 @@ ul {
     color: var(--primary-color);
     font-size: 1.1rem;
     margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.btn-shop.btn-sm {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    line-height: 1;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .lang-badge {

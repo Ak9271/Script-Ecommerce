@@ -2,12 +2,19 @@
 require_once '../config/db.php';
 require_once '../includes/fonctions.php';
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
+$onlyAvailable = false;
+
 $langFilter = isset($_GET['lang']) ? $_GET['lang'] : null;
 
 if ($langFilter) {
-    $produits = getProduitsByLangage($pdo, $langFilter);
+    $produits = getProduitsByLangage($pdo, $langFilter, $onlyAvailable);
 } else {
-    $produits = getAllProduits($pdo);
+    $produits = getAllProduits($pdo, $onlyAvailable);
 }
 
 include '../includes/header.php';
@@ -19,7 +26,7 @@ include '../includes/header.php';
 <?php if (!empty($produits)): ?>
     <div class="all-products-grid">
         <?php foreach ($produits as $produit): ?>
-            <a href="detail_produit.php?id=<?= $produit['id_produit'] ?>" class="product-card">
+            <div class="product-card" onclick="window.location.href='detail_produit.php?id=<?= $produit['id_produit'] ?>'">
                 <div class="product-img">
                     <?php if (!empty($produit['image'])): ?>
                         <img src="../uploads/<?= htmlspecialchars($produit['image']) ?>"
@@ -33,13 +40,17 @@ include '../includes/header.php';
                 <p class="product-desc"><?= htmlspecialchars($produit['categorie'] ?? 'General') ?> ·
                     v<?= htmlspecialchars($produit['version'] ?? '1.0') ?></p>
                 <p class="product-price">
-                    <?= formatPrice($produit['prix']) ?>
-                    <a href="ajouter_panier.php?id=<?= $produit['id_produit'] ?>" class="btn-shop btn-shop-primary btn-sm"
-                        title="Ajouter au panier" onclick="event.stopPropagation();">
-                        <i class="fas fa-cart-plus"></i>
-                    </a>
+                    <span><?= formatPrice($produit['prix']) ?></span>
+                    <?php if (($produit['quantite'] ?? 0) > 0): ?>
+                        <a href="ajouter_panier.php?id=<?= $produit['id_produit'] ?>" class="btn-shop btn-shop-primary btn-sm"
+                            title="Ajouter au panier" onclick="event.stopPropagation();">
+                            <i class="fas fa-cart-plus"></i>
+                        </a>
+                    <?php else: ?>
+                        <span class="badge-out-of-stock" style="color: red; font-size: 0.8em; font-weight: bold;">Hors stock</span>
+                    <?php endif; ?>
                 </p>
-            </a>
+            </div>
         <?php endforeach; ?>
     </div>
 <?php else: ?>
