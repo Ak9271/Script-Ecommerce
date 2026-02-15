@@ -11,6 +11,14 @@ if (!isset($produit) || !$produit) {
     die("Script introuvable.");
 }
 
+$isFavori = false;
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if (isset($_SESSION['user_id'])) {
+    $isFavori = isFavori($pdo, $_SESSION['user_id'], $produit['id_produit']);
+}
+
 include '../includes/header.php';
 ?>
 
@@ -26,7 +34,12 @@ include '../includes/header.php';
     </div>
     <div class="detail-info">
         <span class="lang-badge lang-badge-lg"><?= htmlspecialchars($produit['langage'] ?? 'PHP') ?></span>
-        <h1><?= htmlspecialchars($produit['nom']) ?></h1>
+        <div class="title-row">
+            <h1><?= htmlspecialchars($produit['nom']) ?></h1>
+            <a href="toggle_favoris.php?id=<?= $produit['id_produit'] ?>" class="btn-favori" title="<?= $isFavori ? 'Retirer des favoris' : 'Ajouter aux favoris' ?>">
+                <i class="<?= $isFavori ? 'fas' : 'far' ?> fa-heart"></i>
+            </a>
+        </div>
         <p class="detail-meta"><?= htmlspecialchars($produit['categorie'] ?? 'General') ?> · Version
             <?= htmlspecialchars($produit['version'] ?? '1.0') ?>
         </p>

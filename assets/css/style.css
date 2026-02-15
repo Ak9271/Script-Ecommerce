@@ -830,3 +830,25 @@ footer {
     }
 }
 
+
+.title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.title-row h1 {
+    margin: 0;
+}
+
+.btn-favori {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    transition: transform 0.2s;
+}
+
+.btn-favori:hover {
+    transform: scale(1.1);
+    color: var(--accent-color);
+}

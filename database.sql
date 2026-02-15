@@ -57,6 +57,16 @@ CREATE TABLE `commandes` (
     FOREIGN KEY (`id_produit`) REFERENCES `produits`(`id_produit`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS `favoris`;
+CREATE TABLE `favoris` (
+    `id_user` INT NOT NULL,
+    `id_produit` INT NOT NULL,
+    `cree_le` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id_user`, `id_produit`),
+    FOREIGN KEY (`id_user`) REFERENCES `users`(`id_user`) ON DELETE CASCADE,
+    FOREIGN KEY (`id_produit`) REFERENCES `produits`(`id_produit`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 INSERT INTO `users` (`username`, `email`, `password`, `role`) 
 VALUES ('Admin', 'admin@admin.admin', '$2y$10$6gLDDuZmP/thgPGp/oCFsu2UzxD2anl7iqL3N1QvHUIVc0X6sH8Oq', 'admin');
 

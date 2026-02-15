@@ -34,7 +34,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <a href="../public/a_propos.php">
                     <i class="fas fa-info-circle"></i> À propos
                 </a>
-                <a href="#">
+                <a href="../public/favoris.php">
                     <i class="fas fa-heart"></i>
                 </a>
                 <?php if (isset($_SESSION['user_id'])): ?>

@@ -65,3 +65,30 @@ function formatPrice($price)
 {
     return number_format($price, 2, ',', ' ') . ' €';
 }
+
+function getFavoris($pdo, $userId)
+{
+    $stmt = $pdo->prepare("SELECT p.*, s.quantite FROM produits p LEFT JOIN stock s ON p.id_produit = s.id_produit INNER JOIN favoris f ON p.id_produit = f.id_produit WHERE f.id_user = :userId ORDER BY f.cree_le DESC");
+    $stmt->execute([':userId' => $userId]);
+    return $stmt->fetchAll();
+}
+
+function isFavori($pdo, $userId, $produitId)
+{
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM favoris WHERE id_user = :userId AND id_produit = :produitId");
+    $stmt->execute([':userId' => $userId, ':produitId' => $produitId]);
+    return $stmt->fetchColumn() > 0;
+}
+
+function toggleFavori($pdo, $userId, $produitId)
+{
+    if (isFavori($pdo, $userId, $produitId)) {
+        $stmt = $pdo->prepare("DELETE FROM favoris WHERE id_user = :userId AND id_produit = :produitId");
+        $stmt->execute([':userId' => $userId, ':produitId' => $produitId]);
+        return false; 
+    } else {
+        $stmt = $pdo->prepare("INSERT INTO favoris (id_user, id_produit) VALUES (:userId, :produitId)");
+        $stmt->execute([':userId' => $userId, ':produitId' => $produitId]);
+        return true; 
+    }
+}
