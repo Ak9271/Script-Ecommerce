@@ -19,7 +19,7 @@ include '../includes/header.php';
 <?php if (!empty($produits)): ?>
     <div class="all-products-grid">
         <?php foreach ($produits as $produit): ?>
-            <a href="detail_produit.php?id=<?= $produit['id_produit'] ?>" class="product-card">
+            <div class="product-card" onclick="window.location.href='detail_produit.php?id=<?= $produit['id_produit'] ?>'">
                 <div class="product-img">
                     <?php if (!empty($produit['image'])): ?>
                         <img src="../uploads/<?= htmlspecialchars($produit['image']) ?>"
@@ -33,13 +33,13 @@ include '../includes/header.php';
                 <p class="product-desc"><?= htmlspecialchars($produit['categorie'] ?? 'General') ?> ·
                     v<?= htmlspecialchars($produit['version'] ?? '1.0') ?></p>
                 <p class="product-price">
-                    <?= formatPrice($produit['prix']) ?>
+                    <span><?= formatPrice($produit['prix']) ?></span>
                     <a href="ajouter_panier.php?id=<?= $produit['id_produit'] ?>" class="btn-shop btn-shop-primary btn-sm"
                         title="Ajouter au panier" onclick="event.stopPropagation();">
                         <i class="fas fa-cart-plus"></i>
                     </a>
                 </p>
-            </a>
+            </div>
         <?php endforeach; ?>
     </div>
 <?php else: ?>
