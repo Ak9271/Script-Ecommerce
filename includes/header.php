@@ -25,12 +25,15 @@ if (session_status() === PHP_SESSION_NONE) {
                 ScriptShop
             </a>
 
-            <div class="search-bar">
+            <form action="../public/produits.php" method="GET" class="search-bar">
                 <i class="fas fa-search"></i>
-                <input type="text" placeholder="Rechercher un script...">
-            </div>
+                <input type="text" name="q" placeholder="Rechercher un script..." value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q']) : '' ?>">
+            </form>
 
             <div class="header-icons">
+                <a href="../public/a_propos.php">
+                    <i class="fas fa-info-circle"></i> À propos
+                </a>
                 <a href="#">
                     <i class="fas fa-heart"></i>
                 </a>

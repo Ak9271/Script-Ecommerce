@@ -46,6 +46,21 @@ function getProduitsByLangage($pdo, $langage, $onlyAvailable = false)
     return $stmt->fetchAll();
 }
 
+function searchProduits($pdo, $query, $onlyAvailable = false)
+{
+    $sql = "SELECT p.*, s.quantite FROM produits p LEFT JOIN stock s ON p.id_produit = s.id_produit 
+            WHERE (p.nom LIKE :query OR p.description LIKE :query OR p.langage LIKE :query)";
+    
+    if ($onlyAvailable) {
+        $sql .= " AND s.quantite > 0";
+    }
+    $sql .= " ORDER BY p.cree_le DESC";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':query' => '%' . $query . '%']);
+    return $stmt->fetchAll();
+}
+
 function formatPrice($price)
 {
     return number_format($price, 2, ',', ' ') . ' €';

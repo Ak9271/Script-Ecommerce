@@ -10,17 +10,23 @@ $isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
 $onlyAvailable = false;
 
 $langFilter = isset($_GET['lang']) ? $_GET['lang'] : null;
+$searchQuery = isset($_GET['q']) ? trim($_GET['q']) : null;
 
-if ($langFilter) {
+if ($searchQuery) {
+    $produits = searchProduits($pdo, $searchQuery, $onlyAvailable);
+    $title = 'Résultats pour "' . htmlspecialchars($searchQuery) . '"';
+} elseif ($langFilter) {
     $produits = getProduitsByLangage($pdo, $langFilter, $onlyAvailable);
+    $title = 'Scripts ' . htmlspecialchars(ucfirst($langFilter));
 } else {
     $produits = getAllProduits($pdo, $onlyAvailable);
+    $title = 'Tous les Scripts';
 }
 
 include '../includes/header.php';
 ?>
 
-<h1 class="page-title"><?= $langFilter ? 'Scripts ' . htmlspecialchars(ucfirst($langFilter)) : 'Tous les Scripts' ?>
+<h1 class="page-title"><?= $title ?>
 </h1>
 
 <?php if (!empty($produits)): ?>
