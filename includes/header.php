@@ -57,13 +57,19 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
 
         <nav class="main-nav">
-            <a href="../public/produits.php">Tous les Scripts</a>
-            <a href="../public/produits.php?lang=python">Python</a>
-            <a href="../public/produits.php?lang=javascript">JavaScript</a>
-            <a href="../public/produits.php?lang=php">PHP</a>
-            <a href="../public/produits.php?lang=bash">Bash</a>
-            <a href="../public/produits.php?lang=csharp">C#</a>
-            <a href="../public/a_propos.php">Contact</a>
+            <div class="nav-container">
+                <a href="../public/produits.php" class="<?= !isset($_GET['lang']) ? 'active' : '' ?>">Tous</a>
+                <a href="../public/produits.php?lang=PHP" class="<?= (isset($_GET['lang']) && $_GET['lang'] === 'PHP') ? 'active' : '' ?>">PHP</a>
+                <a href="../public/produits.php?lang=Python" class="<?= (isset($_GET['lang']) && $_GET['lang'] === 'Python') ? 'active' : '' ?>">Python</a>
+                <a href="../public/produits.php?lang=JavaScript" class="<?= (isset($_GET['lang']) && $_GET['lang'] === 'JavaScript') ? 'active' : '' ?>">JavaScript</a>
+                <a href="../public/produits.php?lang=Bash" class="<?= (isset($_GET['lang']) && $_GET['lang'] === 'Bash') ? 'active' : '' ?>">Bash</a>
+                <a href="../public/produits.php?lang=C%23" class="<?= (isset($_GET['lang']) && $_GET['lang'] === 'C#') ? 'active' : '' ?>">C#</a>
+                <a href="../public/produits.php?lang=Java" class="<?= (isset($_GET['lang']) && $_GET['lang'] === 'Java') ? 'active' : '' ?>">Java</a>
+                <a href="../public/produits.php?lang=Ruby" class="<?= (isset($_GET['lang']) && $_GET['lang'] === 'Ruby') ? 'active' : '' ?>">Ruby</a>
+                <a href="../public/produits.php?lang=Go" class="<?= (isset($_GET['lang']) && $_GET['lang'] === 'Go') ? 'active' : '' ?>">Go</a>
+                <a href="../public/produits.php?lang=Rust" class="<?= (isset($_GET['lang']) && $_GET['lang'] === 'Rust') ? 'active' : '' ?>">Rust</a>
+                <a href="../public/produits.php?lang=TypeScript" class="<?= (isset($_GET['lang']) && $_GET['lang'] === 'TypeScript') ? 'active' : '' ?>">TypeScript</a>
+            </div>
         </nav>
     </header>
 
