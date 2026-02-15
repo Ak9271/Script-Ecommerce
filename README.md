@@ -1,7 +1,6 @@
 # Script-Ecommerce
 
 <<<<<<< HEAD
-PUSH
 =======
 Projet de site e-commerce développé en PHP sans framework, utilisant une architecture MVC simplifiée.
 
@@ -24,7 +23,7 @@ Projet de site e-commerce développé en PHP sans framework, utilisant une archi
 
 1. **Base de données** :
    - Importez le fichier `database.sql` dans votre serveur MySQL (via phpMyAdmin ou ligne de commande).
-   - Cela créera la base `script_ecommerce` et les tables nécessaires (`users`, `produits`, `stock`, `factures`, `commandes`).
+   - Cela créera la base `script_ecommerce` et les tables nécessaires (`users`, `produits`, `stock`, `factures`, `commandes`, `favoris`).
 
 2. **Configuration** :
    - Vérifiez les paramètres de connexion à la base de données dans `config/db.php`.
