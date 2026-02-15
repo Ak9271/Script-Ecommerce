@@ -44,6 +44,11 @@ include '../includes/header.php';
             <?= htmlspecialchars($produit['version'] ?? '1.0') ?>
         </p>
         <h3 class="detail-price"><?= formatPrice($produit['prix']) ?></h3>
+        
+        <p class="stock-info" style="color: <?= ($produit['quantite'] > 0) ? '#10b981' : '#ef4444' ?>; font-weight: bold; margin-bottom: 15px;">
+            <?= ($produit['quantite'] > 0) ? '<i class="fas fa-check-circle"></i> En stock : ' . $produit['quantite'] : '<i class="fas fa-times-circle"></i> Rupture de stock' ?>
+        </p>
+
         <p class="detail-description"><?= nl2br(htmlspecialchars($produit['description'])) ?></p>
         
         <?php if (($produit['quantite'] ?? 0) > 0): ?>

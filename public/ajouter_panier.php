@@ -20,10 +20,18 @@ if (!isset($_SESSION['panier'])) {
     $_SESSION['panier'] = [];
 }
 
-if (isset($_SESSION['panier'][$id])) {
-    $_SESSION['panier'][$id]++;
+$id_produit = $produit['id_produit'];
+$current_qty = $_SESSION['panier'][$id_produit] ?? 0;
+$stock_disponible = $produit['quantite'] ?? 0;
+
+if ($current_qty < $stock_disponible) {
+    if (isset($_SESSION['panier'][$id_produit])) {
+        $_SESSION['panier'][$id_produit]++;
+    } else {
+        $_SESSION['panier'][$id_produit] = 1;
+    }
 } else {
-    $_SESSION['panier'][$id] = 1;
+    // Optional: Add a flash message here if desired
 }
 
 // Redirect back to the previous page if possible, otherwise products
