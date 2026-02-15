@@ -90,6 +90,9 @@ include '../includes/header.php';
                     </span>
                 </div>
                 <button class="btn-shop btn-shop-primary btn-block">Passer la commande</button>
+                <a href="vider_panier.php" class="btn-shop btn-shop-outline btn-block" style="margin-top: 10px; color: crimson; border-color: crimson; text-align: center;">
+                    <i class="fas fa-trash-alt"></i> Vider le panier
+                </a>
             </div>
         </div>
     <?php endif; ?>
